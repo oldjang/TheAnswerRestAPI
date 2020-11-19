@@ -1,6 +1,6 @@
 import time
 from django.http import JsonResponse
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, filters
 from rest_framework.views import APIView
 
 from api import models
@@ -55,6 +55,8 @@ class QuestionViewSet(viewsets.ModelViewSet):
     permission_classes = (IsSuperUser,)
     queryset = Question.objects.all().order_by('-pk')
     serializer_class = QuestionSerializers
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title']
 
 
 class AnswerSetViewSet(generics.ListAPIView):
