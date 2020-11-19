@@ -8,5 +8,5 @@ class CORSMiddleware(MiddlewareMixin):
         if request.method == 'OPTIONS':
             # 复杂请求会先发预检
             response["Access-Control-Allow-Headers"] = "Content-Type,token"
-            response["Access-Control-Allow-Methods"] = "PUT,PATCH,DELETE"
+            response["Access-Control-Allow-Methods"] = "PUT,PATCH,DELETE,POST"
         return response
