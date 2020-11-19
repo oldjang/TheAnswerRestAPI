@@ -10,7 +10,8 @@ class UserAuth(BaseAuthentication):
         # get请求获取数据是才验证权限，post等可能是注册或者登录，应该放开访问权限
         if request.method == 'POST' or request.method == 'DELETE' or request.method == 'PUT':
             # request.query_params 这个获取的类型是 django里面的 QueryDict 类型
-            token = request.data.get('token')
+            # token = request.data.get('token')
+            token = request.META.get('HTTP_TOKEN')
             print(token)
             try:
                 u_name = UserToken.objects.get(u_token=token).u_name
